@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payment_learn_app/core/utilies/app_colors.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/view/my_cart_screen.dart';
 
 void main(){
@@ -10,6 +11,13 @@ class PaymentApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.whiteColor,
+        appBarTheme: const AppBarTheme(
+          elevation: 0,
+          backgroundColor: AppColors.whiteColor
+        )
+      ),
       debugShowCheckedModeBanner: false,
       home: MyCartScreen(),
     );
