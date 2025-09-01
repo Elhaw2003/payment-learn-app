@@ -1,0 +1,23 @@
+import 'package:flutter/material.dart';
+class DashLineSeparatorWidget extends StatelessWidget {
+  const DashLineSeparatorWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: List.generate(
+        30, (index) {
+        return Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 3),
+            child: Container(
+              height: 2,
+              color: Color(0xffB8B8B8),
+            ),
+          ),
+        );
+      },
+      ),
+    );
+  }
+}

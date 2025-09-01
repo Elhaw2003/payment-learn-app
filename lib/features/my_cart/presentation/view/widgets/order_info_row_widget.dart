@@ -13,7 +13,7 @@ class OrderInfoRowWidget extends StatelessWidget {
     return Row(
       children: [
         Expanded(child: Text(title,style: titleTextStyle?? AppStyles.size18W400Inter,)),
-        Expanded(child: Text("\$$value",style: valueTextStyle?? AppStyles.size18W400Inter,textAlign: TextAlign.end,)),
+        Expanded(child: Text(value,style: valueTextStyle?? AppStyles.size18W400Inter,textAlign: TextAlign.end,)),
       ],
     );
   }
