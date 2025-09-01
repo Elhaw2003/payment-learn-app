@@ -6,8 +6,6 @@ import 'package:payment_learn_app/core/widgets/custom_button_widget.dart';
 import 'package:payment_learn_app/core/widgets/custom_divider.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/view/widgets/order_info_row_widget.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/view/widgets/payment_bottom_sheet_widget.dart';
-import 'package:payment_learn_app/features/payment_details_ui_only/presentation/view/payment_details_ui_only_screen.dart';
-
 import '../../../../../generated/assets.dart';
 
 class MyCartBody extends StatelessWidget {
