@@ -1,0 +1,5 @@
+class PaymentServiceModel {
+  final String image;
+
+  PaymentServiceModel({required this.image});
+}
