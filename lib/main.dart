@@ -1,12 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:payment_learn_app/core/utilies/app_colors.dart';
 import 'package:payment_learn_app/core/utilies/services/manage_cubit_servise.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/view/my_cart_screen.dart';
 
-void main()async{
-  WidgetsFlutterBinding.ensureInitialized();
+import 'core/utilies/services/api_keys.dart';
+
+void main(){
+  // WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
+  Stripe.publishableKey = ApiKeys.publishableKey;
   runApp(PaymentApp());
 }
 class PaymentApp extends StatelessWidget {

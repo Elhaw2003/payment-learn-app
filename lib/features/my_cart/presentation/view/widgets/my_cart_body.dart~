@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:payment_learn_app/core/utilies/app_colors.dart';
 import 'package:payment_learn_app/core/utilies/app_styles.dart';
 import 'package:payment_learn_app/core/utilies/app_texts.dart';
 import 'package:payment_learn_app/core/widgets/custom_button_widget.dart';
 import 'package:payment_learn_app/core/widgets/custom_divider.dart';
-import 'package:payment_learn_app/features/my_cart/presentation/controller/checkout/checkout_cubit.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/view/widgets/order_info_row_widget.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/view/widgets/payment_bottom_sheet_widget.dart';
 import '../../../../../generated/assets.dart';
-import '../../../data/repos/checkout_repo/checkout_implementation_server_repo.dart';
 
 class MyCartBody extends StatelessWidget {
   const MyCartBody({super.key});
@@ -37,20 +34,16 @@ class MyCartBody extends StatelessWidget {
           ),
           SizedBox(height: 15),
           CustomButtonWidget(
-            onPressed: () {
+            onPressed: (){
               showBottomSheet(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)
-                  ),
-                  backgroundColor: AppColors.backgroundThankYouColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)
+                ),
+                backgroundColor: AppColors.backgroundThankYouColor,
                   elevation: 0,
-                  context: context,
-                  builder: (context) {
-                    return BlocProvider(
-                      create: (context) => CheckoutCubit(checkoutRepo: CheckoutImplementationServerRepo()),
-                      child: PaymentBottomSheetWidget(),
-                    );
-                  });
+                  context: context, builder: (context) {
+                return PaymentBottomSheetWidget();
+              });
             },
             horizontalPadding: 75,
             verticalPadding: 15,

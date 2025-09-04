@@ -24,7 +24,7 @@ class StripeService {
     return paymentIntentModel;
   }
 
-  // Create an Ephemeral Key for the Customer(stripe version , customer id)
+  // Create an Ephemeral Key for the Customer
 
   // init payment sheet
 

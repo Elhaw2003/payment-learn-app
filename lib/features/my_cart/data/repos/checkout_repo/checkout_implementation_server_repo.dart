@@ -20,7 +20,7 @@ class CheckoutImplementationServerRepo implements CheckoutRepo{
       return right(null);
 
     }catch(e){
-
+      print("=============== $e");
       return left(ServerFailure(message: e.toString()));
     }
 

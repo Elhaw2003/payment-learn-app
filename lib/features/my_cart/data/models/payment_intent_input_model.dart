@@ -1,5 +1,5 @@
 class PaymentIntentInputModel {
-  final String amount;
+  final num amount;
   final String currency;
 
   PaymentIntentInputModel({
@@ -7,7 +7,7 @@ class PaymentIntentInputModel {
     required this.currency,
   });
   toJson() => {
-        'amount': amount,
+        'amount': (amount * 100).toString(),
         'currency': currency,
       };
 }
