@@ -44,7 +44,7 @@ class ContinueButtonSheetWidget extends StatelessWidget {
             ? CircularProgressIndicator(backgroundColor: AppColors.whiteColor)
             : CustomButtonWidget(
                 onPressed: (){
-                  BlocProvider.of<CheckoutCubit>(context).executePaymentCubit(paymentIntentInputModel: PaymentIntentInputModel(amount: 100, currency: "USD"));
+                  BlocProvider.of<CheckoutCubit>(context).executePaymentCubit(paymentIntentInputModel: PaymentIntentInputModel(amount: 100, currency: "USD",customerId: "cus_SzaxrQXDIsycAQ"));
                 },
                 horizontalPadding: 100,
                 verticalPadding: 15,
