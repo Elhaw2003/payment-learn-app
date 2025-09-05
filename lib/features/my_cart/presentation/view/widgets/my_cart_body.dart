@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:payment_learn_app/core/utilies/app_colors.dart';
 import 'package:payment_learn_app/core/utilies/app_styles.dart';
 import 'package:payment_learn_app/core/utilies/app_texts.dart';
+import 'package:payment_learn_app/core/utilies/services/api_keys.dart';
 import 'package:payment_learn_app/core/widgets/custom_button_widget.dart';
 import 'package:payment_learn_app/core/widgets/custom_divider.dart';
+import 'package:payment_learn_app/features/my_cart/data/models/transactions_model.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/controller/checkout/checkout_cubit.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/view/widgets/order_info_row_widget.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/view/widgets/payment_bottom_sheet_widget.dart';
@@ -38,19 +41,21 @@ class MyCartBody extends StatelessWidget {
           SizedBox(height: 15),
           CustomButtonWidget(
             onPressed: () {
-              showBottomSheet(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)
-                  ),
-                  backgroundColor: AppColors.backgroundThankYouColor,
-                  elevation: 0,
-                  context: context,
-                  builder: (context) {
-                    return BlocProvider(
-                      create: (context) => CheckoutCubit(checkoutRepo: CheckoutImplementationServerRepo()),
-                      child: PaymentBottomSheetWidget(),
-                    );
-                  });
+              // showBottomSheet(
+              //     shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(20)
+              //     ),
+              //     backgroundColor: AppColors.backgroundThankYouColor,
+              //     elevation: 0,
+              //     context: context,
+              //     builder: (context) {
+              //       return BlocProvider(
+              //         create: (context) => CheckoutCubit(checkoutRepo: CheckoutImplementationServerRepo()),
+              //         child: PaymentBottomSheetWidget(),
+              //       );
+              //     });
+              var transactions = getTransactions();
+              executePaypalPayment(context,transactions);
             },
             horizontalPadding: 75,
             verticalPadding: 15,
@@ -64,4 +69,59 @@ class MyCartBody extends StatelessWidget {
       ),
     );
   }
+}
+({AmountModel amount, ItemListModel itemList})getTransactions() {
+  {
+    var amount = AmountModel(total: "100",
+        currency: "USD",
+        details: DetailsModel(subtotal: "100", shipping: "0", shippingDiscount: 0));
+    List<ItemModel> items = [
+      ItemModel(
+        name: "Apple",
+        quantity: 10,
+        price: "5",
+        currency: "USD",
+      ),
+      ItemModel(
+        name: "Pineapple",
+        quantity: 5,
+        price: "10",
+        currency: "USD",
+      ),
+    ];
+    var itemList = ItemListModel(items: items);
+    return (amount : amount,itemList : itemList);
+  }
+}
+executePaypalPayment(BuildContext context,({AmountModel amount, ItemListModel itemList}) transactions) {
+  Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => PaypalCheckoutView(
+          sandboxMode: true,
+          clientId: ApiKeys.clientIdPaypal,
+          secretKey: ApiKeys.secretKeyPaypal,
+          transactions:  [
+            {
+              "amount": transactions.amount.toJson(),
+              "description": "The payment transaction description.",
+              "payment_options": {
+                "allowed_payment_method":
+                "INSTANT_FUNDING_SOURCE"
+              },
+              "item_list": transactions.itemList.toJson()
+            }
+          ],
+          note: "Contact us for any questions on your order.",
+          onSuccess: (Map params) async {
+            print("onSuccess: $params");
+          },
+          onError: (error) {
+            print("onError: $error");
+            Navigator.pop(context);
+          },
+          onCancel: () {
+            print('cancelled:');
+          },
+        ),
+      ));
 }

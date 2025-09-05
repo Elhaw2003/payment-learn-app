@@ -7,6 +7,7 @@ import 'package:payment_learn_app/features/my_cart/data/models/init_payment_shee
 
 import '../../../features/my_cart/data/models/payment_intent_input_model.dart';
 import '../../../features/my_cart/data/models/payment_intent_model.dart';
+import '../end_points.dart';
 
 class StripeService {
   final ApiService apiService = ApiService();
@@ -19,8 +20,8 @@ class StripeService {
     var response = await apiService.post(
       contentType: Headers.formUrlEncodedContentType,
       body: paymentIntentInputModel.toJson(),
-      url: "https://api.stripe.com/v1/payment_intents",
-      token: ApiKeys.secretKey,
+      url: EndPoints.baseUrl + EndPoints.createPaymentIntent,
+      token: ApiKeys.secretKeyStripe,
     );
     var paymentIntentModel = PaymentIntentModel.fromJson(response.data);
     return paymentIntentModel;
@@ -33,12 +34,12 @@ class StripeService {
   }) async {
     var response = await apiService.post(
       body: {"customer": customerId},
-      url: "https://api.stripe.com/v1/ephemeral_keys",
-      token: ApiKeys.secretKey,
+      url: EndPoints.baseUrl + EndPoints.ephemeralKey,
+      token: ApiKeys.secretKeyStripe,
       contentType: Headers.formUrlEncodedContentType,
       headers: {
         "Stripe-Version": "2025-08-27.basil",
-        "Authorization": "Bearer ${ApiKeys.secretKey}",
+        "Authorization": "Bearer ${ApiKeys.secretKeyStripe}",
       },
     );
     var ephemeralKeyModel = EphemeralKeyModel.fromJson(response.data);
