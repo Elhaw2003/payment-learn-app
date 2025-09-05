@@ -5,8 +5,10 @@ import 'package:payment_learn_app/features/my_cart/data/models/payment_intent_in
 import 'package:payment_learn_app/features/my_cart/presentation/controller/checkout/checkout_states.dart';
 
 import '../../../../../core/utilies/app_styles.dart';
+import '../../../../../core/utilies/services/paypal_service.dart';
 import '../../../../../core/widgets/custom_button_widget.dart';
 import '../../../../thank_you/presentation/view/thank_you_screen.dart';
+import '../../controller/change_index/change_index_cubit.dart';
 import '../../controller/checkout/checkout_cubit.dart';
 
 class ContinueButtonSheetWidget extends StatelessWidget {
@@ -44,7 +46,12 @@ class ContinueButtonSheetWidget extends StatelessWidget {
             ? CircularProgressIndicator(backgroundColor: AppColors.whiteColor)
             : CustomButtonWidget(
                 onPressed: (){
-                  BlocProvider.of<CheckoutCubit>(context).executePaymentCubit(paymentIntentInputModel: PaymentIntentInputModel(amount: 100, currency: "USD",customerId: "cus_SzaxrQXDIsycAQ"));
+                  if(BlocProvider.of<ChangeIndexCubit>(context).index == 0){
+                    BlocProvider.of<CheckoutCubit>(context).executePaymentCubit(paymentIntentInputModel: PaymentIntentInputModel(amount: 100, currency: "USD",customerId: "cus_SzaxrQXDIsycAQ"));
+                  }
+                  else if(BlocProvider.of<ChangeIndexCubit>(context).index == 1){
+                    PaypalService.executePaypalPayment(context);
+                  }
                 },
                 horizontalPadding: 100,
                 verticalPadding: 15,
