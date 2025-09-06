@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
-import 'package:payment_learn_app/features/thank_you/presentation/view/thank_you_screen.dart';
 
 import '../../../features/my_cart/data/models/transactions_model.dart';
+import '../../../features/thank_you/presentation/view/thank_you_screen.dart';
 import 'api_keys.dart';
 
 class PaypalService{
@@ -48,18 +48,20 @@ class PaypalService{
               {
                 "amount": getTransactions().amount.toJson(),
                 "description": "The payment transaction description.",
-                // "payment_options": {
-                //   "allowed_payment_method":
-                //   "INSTANT_FUNDING_SOURCE"
-                // },
+                "payment_options": {
+                  "allowed_payment_method":
+                  "INSTANT_FUNDING_SOURCE"
+                },
                 "item_list": getTransactions().itemList.toJson()
               }
             ],
-            // note: "Contact us for any questions on your order.",
+            note: "Contact us for any questions on your order.",
             onSuccess: (Map params) async {
               print("onSuccess: $params");
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: Colors.green,content: Text('Payment Done',style: TextStyle(color: Colors.white),),));
-
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (c){
+                return ThankYouScreen();
+              }));
             },
             onError: (error) {
               print("onError: $error");
