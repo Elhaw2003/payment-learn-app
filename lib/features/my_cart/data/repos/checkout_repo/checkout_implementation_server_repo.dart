@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 import 'package:payment_learn_app/core/error/failure.dart';
 import 'package:payment_learn_app/core/utilies/services/stripe_service.dart';
@@ -19,7 +20,10 @@ class CheckoutImplementationServerRepo implements CheckoutRepo{
 
       return right(null);
 
-    }catch(e){
+    }  on StripeException catch(e){
+      return left(ServerFailure(message: e.error.message ?? "Oops something went wrong"));
+    }
+    catch(e){
       print("=============== $e");
       return left(ServerFailure(message: e.toString()));
     }

@@ -3,6 +3,7 @@ class AppTexts {
   static const String orderSubtotal = 'Order Subtotal';
   static const String discount = 'Discount';
   static const String shipping = 'Shipping';
+  static const String continu = 'Continue';
   static const String total = 'Total';
   static const String pay = 'Pay';
   static const String paid = 'PAID';

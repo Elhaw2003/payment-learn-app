@@ -44,7 +44,7 @@ class MyCartBody extends StatelessWidget {
             onPressed: () {
               showBottomSheet(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(20),topLeft: Radius.circular(20)),
                   ),
                   backgroundColor: AppColors.backgroundThankYouColor,
                   elevation: 0,

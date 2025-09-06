@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:payment_learn_app/core/utilies/app_texts.dart';
 import 'package:payment_learn_app/features/payment_details_ui_only/presentation/view/widgets/custom_credit_card_and_credit_form_widget.dart';
-import 'package:payment_learn_app/features/my_cart/presentation/view/widgets/payment_bottom_sheet_widget.dart';
-import 'package:payment_learn_app/features/payment_details_ui_only/presentation/view/widgets/payment_service_list_view_widget.dart';
 import 'package:payment_learn_app/features/thank_you/presentation/view/thank_you_screen.dart';
 
 import '../../../../../core/utilies/app_styles.dart';
@@ -25,10 +23,6 @@ class _PaymentDetailsUiOnlyBodyState extends State<PaymentDetailsUiOnlyBody> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: CustomScrollView(
         slivers: [
-          SliverToBoxAdapter(child: SizedBox(height: 20)),
-          SliverToBoxAdapter(
-            child: SizedBox(height: 62, child: PaymentServiceListViewWidget()),
-          ),
           SliverToBoxAdapter(child: SizedBox(height: 34)),
           SliverToBoxAdapter(child: CustomCreditCardAndCreditFormWidget(formKey: formKey,autoValidateMode: autoValidateMode,)),
           SliverFillRemaining(

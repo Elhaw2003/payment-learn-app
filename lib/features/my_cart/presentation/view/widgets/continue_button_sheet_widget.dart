@@ -5,6 +5,7 @@ import 'package:payment_learn_app/features/my_cart/data/models/payment_intent_in
 import 'package:payment_learn_app/features/my_cart/presentation/controller/checkout/checkout_states.dart';
 
 import '../../../../../core/utilies/app_styles.dart';
+import '../../../../../core/utilies/app_texts.dart';
 import '../../../../../core/utilies/services/paypal_service.dart';
 import '../../../../../core/widgets/custom_button_widget.dart';
 import '../../../../thank_you/presentation/view/thank_you_screen.dart';
@@ -55,7 +56,7 @@ class ContinueButtonSheetWidget extends StatelessWidget {
                 },
                 horizontalPadding: 100,
                 verticalPadding: 15,
-                child: Text("Continue", style: AppStyles.size24W600Inter),
+                child: Text(AppTexts.continu, style: AppStyles.size24W600Inter),
               );
       },
     );

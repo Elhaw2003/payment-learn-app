@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:payment_learn_app/features/payment_details_ui_only/data/models/payment_service_model.dart';
 
 import '../../../../../core/utilies/app_colors.dart';
-import '../../../../my_cart/presentation/controller/change_index/change_index_cubit.dart';
+import '../../controller/change_index/change_index_cubit.dart';
 
 class ItemPaymentServiceListViewWidget extends StatelessWidget {
   const ItemPaymentServiceListViewWidget({super.key, required this.paymentServiceModel, required this.index});

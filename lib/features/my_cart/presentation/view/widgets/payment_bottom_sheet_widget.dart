@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/controller/change_index/change_index_cubit.dart';
 import 'package:payment_learn_app/features/my_cart/presentation/view/widgets/continue_button_sheet_widget.dart';
-import 'package:payment_learn_app/features/payment_details_ui_only/presentation/view/widgets/payment_service_list_view_widget.dart';
+import 'package:payment_learn_app/features/my_cart/presentation/view/widgets/payment_service_list_view_widget.dart';
 
 class PaymentBottomSheetWidget extends StatelessWidget {
   const PaymentBottomSheetWidget({super.key});
@@ -20,7 +20,7 @@ class PaymentBottomSheetWidget extends StatelessWidget {
               SizedBox(height: 62, child: PaymentServiceListViewWidget()),
               SizedBox(height: 50),
               ContinueButtonSheetWidget(),
-              SizedBox(height: 20,)
+              SizedBox(height: 20),
             ],
           ),
         );
