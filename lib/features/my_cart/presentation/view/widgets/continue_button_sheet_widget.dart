@@ -20,14 +20,17 @@ class ContinueButtonSheetWidget extends StatelessWidget {
     return BlocConsumer<CheckoutCubit, CheckoutStates>(
       listener: (context, state) {
         if (state is CheckoutSuccessState) {
-          // Navigator.pop(context);
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (c) {
-                return ThankYouScreen();
-              },
-            ),
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (c){
+            return ThankYouScreen();
+          }),
+                (route) {
+              if(route.settings.name == '/'){
+                return true;
+              }
+              else{
+                return false;
+              }
+            },
           );
         } else if (state is CheckoutFailureState) {
           Navigator.pop(context);

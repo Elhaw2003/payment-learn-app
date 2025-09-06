@@ -59,9 +59,7 @@ class PaypalService{
             onSuccess: (Map params) async {
               print("onSuccess: $params");
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(backgroundColor: Colors.green,content: Text('Payment Done',style: TextStyle(color: Colors.white),),));
-              Navigator.pushReplacement(context, MaterialPageRoute(builder: (c){
-                return ThankYouScreen();
-              }));
+
             },
             onError: (error) {
               print("onError: $error");
